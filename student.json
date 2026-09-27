@@ -1,0 +1,45 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "name": "Rahul Patil",
+      "email": "rahul@gmail.com",
+      "phone": "9876543210",
+      "department": "BCS",
+      "year": "Third Year",
+      "marks": 82,
+      "status": "active"
+    },
+    {
+      "id": "2",
+      "name": "Priya Sharma",
+      "email": "priya@gmail.com",
+      "phone": "9876543211",
+      "department": "BCA",
+      "year": "Second Year",
+      "marks": 76,
+      "status": "active"
+    },
+    {
+      "id": "3",
+      "name": "Amit Joshi",
+      "email": "amit@gmail.com",
+      "phone": "9876543212",
+      "department": "BBA",
+      "year": "First Year",
+      "marks": 68,
+      "status": "inactive"
+    },
+    {
+      "id": "4",
+      "name": "Sneha Kulkarni",
+      "email": "sneha@gmail.com",
+      "phone": "9876543213",
+      "department": "B.Com",
+      "year": "Third Year",
+      "marks": 91,
+      "status": "active"
+    }
+  ]
+}
+

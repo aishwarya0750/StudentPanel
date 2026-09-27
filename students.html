@@ -1,0 +1,1098 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Student User Panel</title>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    body {
+
+      margin: 0;
+
+      font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
+
+      background: #f4f6f8;
+
+      color: #334155;
+    }
+
+
+    /* HEADER */
+
+    header {
+
+      background: #ffffff;
+
+      padding: 18px 40px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      box-shadow:
+        0 1px 4px rgba(0,0,0,0.08);
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 10;
+    }
+
+
+    .logo {
+
+      font-size: 24px;
+
+      font-weight: 700;
+
+      color: #0f172a;
+    }
+
+
+    .nav-buttons {
+
+      display: flex;
+
+      gap: 10px;
+    }
+
+
+    .nav-btn {
+
+      text-decoration: none;
+
+      padding: 10px 18px;
+
+      border-radius: 6px;
+
+      font-size: 14px;
+
+      font-weight: 600;
+    }
+
+
+    .home-btn {
+
+      background: #e2e8f0;
+
+      color: #0f172a;
+    }
+
+
+    .admin-btn {
+
+      background: #2563eb;
+
+      color: white;
+    }
+
+
+    /* CONTAINER */
+
+    .container {
+
+      max-width: 1200px;
+
+      margin: 40px auto;
+
+      padding: 0 20px;
+    }
+
+
+    .welcome {
+
+      margin-bottom: 25px;
+    }
+
+
+    .welcome h2 {
+
+      margin: 0;
+
+      color: #0f172a;
+
+      font-size: 28px;
+    }
+
+
+    .welcome p {
+
+      color: #64748b;
+
+      margin-top: 6px;
+    }
+
+
+    /* SEARCH */
+
+    .search-box {
+
+      background: white;
+
+      padding: 20px;
+
+      border-radius: 10px;
+
+      box-shadow:
+        0 2px 5px rgba(0,0,0,0.05);
+
+      margin-bottom: 30px;
+
+      display: flex;
+
+      gap: 10px;
+    }
+
+
+    .search-box input {
+
+      flex: 1;
+
+      padding: 12px 15px;
+
+      border: 1px solid #cbd5e1;
+
+      border-radius: 6px;
+
+      font-size: 15px;
+
+      outline: none;
+    }
+
+
+    .search-box input:focus {
+
+      border-color: #2563eb;
+    }
+
+
+    .search-btn {
+
+      border: none;
+
+      background: #2563eb;
+
+      color: white;
+
+      padding: 12px 22px;
+
+      border-radius: 6px;
+
+      font-weight: 600;
+
+      cursor: pointer;
+    }
+
+
+    /* STUDENT GRID */
+
+    .student-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fill,
+          minmax(280px, 1fr)
+        );
+
+      gap: 24px;
+    }
+
+
+    /* CARD */
+
+    .student-card {
+
+      background: white;
+
+      border-radius: 12px;
+
+      padding: 24px;
+
+      box-shadow:
+        0 4px 8px rgba(0,0,0,0.06);
+
+      transition: 0.2s;
+
+    }
+
+
+    .student-card:hover {
+
+      transform:
+        translateY(-5px);
+
+      box-shadow:
+        0 8px 16px rgba(0,0,0,0.1);
+    }
+
+
+    /* PROFILE */
+
+    .profile {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 15px;
+
+      margin-bottom: 18px;
+    }
+
+
+    .avatar {
+
+      width: 60px;
+
+      height: 60px;
+
+      border-radius: 50%;
+
+      background: #dbeafe;
+
+      color: #2563eb;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 24px;
+
+      font-weight: 700;
+    }
+
+
+    .student-name {
+
+      margin: 0;
+
+      color: #0f172a;
+
+      font-size: 19px;
+    }
+
+
+    .student-id {
+
+      font-size: 12px;
+
+      color: #64748b;
+
+      margin-top: 3px;
+    }
+
+
+    /* DETAILS */
+
+    .details {
+
+      border-top:
+        1px solid #e2e8f0;
+
+      padding-top: 15px;
+    }
+
+
+    .detail {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      margin: 10px 0;
+
+      font-size: 14px;
+    }
+
+
+    .label {
+
+      color: #64748b;
+    }
+
+
+    .value {
+
+      font-weight: 600;
+
+      color: #0f172a;
+    }
+
+
+    /* STATUS */
+
+    .status {
+
+      padding: 4px 10px;
+
+      border-radius: 12px;
+
+      font-size: 12px;
+
+      font-weight: 600;
+    }
+
+
+    .active {
+
+      background: #dcfce7;
+
+      color: #166534;
+    }
+
+
+    .inactive {
+
+      background: #fee2e2;
+
+      color: #991b1b;
+    }
+
+
+    /* VIEW BUTTON */
+
+    .view-btn {
+
+      width: 100%;
+
+      margin-top: 18px;
+
+      padding: 11px;
+
+      border: none;
+
+      background: #0f172a;
+
+      color: white;
+
+      border-radius: 6px;
+
+      cursor: pointer;
+
+      font-weight: 600;
+    }
+
+
+    .view-btn:hover {
+
+      background: #1e293b;
+    }
+
+
+    /* NO STUDENT */
+
+    .no-students {
+
+      grid-column: 1 / -1;
+
+      text-align: center;
+
+      background: white;
+
+      padding: 50px;
+
+      border-radius: 10px;
+
+      color: #64748b;
+    }
+
+
+    /* MODAL */
+
+    .modal {
+
+      display: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      background:
+        rgba(15,23,42,0.6);
+
+      align-items: center;
+
+      justify-content: center;
+
+      z-index: 100;
+    }
+
+
+    .modal-content {
+
+      background: white;
+
+      width: 90%;
+
+      max-width: 500px;
+
+      border-radius: 12px;
+
+      padding: 30px;
+
+      position: relative;
+    }
+
+
+    .close {
+
+      position: absolute;
+
+      right: 20px;
+
+      top: 15px;
+
+      font-size: 25px;
+
+      cursor: pointer;
+
+      color: #64748b;
+    }
+
+
+    .modal-content h2 {
+
+      color: #0f172a;
+
+      margin-top: 0;
+    }
+
+
+    .modal-detail {
+
+      padding: 12px 0;
+
+      border-bottom:
+        1px solid #e2e8f0;
+
+      display: flex;
+
+      justify-content: space-between;
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      header {
+
+        padding: 15px 20px;
+
+      }
+
+
+      .logo {
+
+        font-size: 20px;
+
+      }
+
+
+      .nav-buttons {
+
+        gap: 5px;
+
+      }
+
+
+      .nav-btn {
+
+        padding: 8px 10px;
+
+        font-size: 12px;
+
+      }
+
+
+      .search-box {
+
+        flex-direction: column;
+
+      }
+
+
+      .search-btn {
+
+        width: 100%;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="logo">
+
+      🎓 Student Portal
+
+    </div>
+
+
+    <div class="nav-buttons">
+
+      <a
+        href="student.html"
+        class="nav-btn home-btn"
+      >
+        🏠 Home
+      </a>
+
+
+      <a
+        href="admin.html"
+        class="nav-btn admin-btn"
+      >
+        👨‍💼 Admin Panel
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- MAIN -->
+
+  <div class="container">
+
+
+    <div class="welcome">
+
+      <h2>
+        Welcome to Student Portal
+      </h2>
+
+      <p>
+        View student information and details
+      </p>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+      <input
+        type="text"
+        id="search"
+        placeholder="Search by student name or department..."
+      >
+
+
+      <button
+        class="search-btn"
+        onclick="searchStudents()"
+      >
+        🔍 Search
+      </button>
+
+    </div>
+
+
+    <!-- STUDENTS -->
+
+    <div
+      id="student-grid"
+      class="student-grid"
+    >
+
+      <div class="no-students">
+
+        Loading students...
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <!-- DETAILS MODAL -->
+
+  <div
+    id="modal"
+    class="modal"
+  >
+
+    <div class="modal-content">
+
+      <span
+        class="close"
+        onclick="closeModal()"
+      >
+        &times;
+      </span>
+
+
+      <h2>
+        Student Details
+      </h2>
+
+
+      <div id="modal-body"></div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+
+    let students = [];
+
+
+    const grid =
+      document.getElementById(
+        "student-grid"
+      );
+
+
+    const search =
+      document.getElementById(
+        "search"
+      );
+
+
+    /* LOAD STUDENTS */
+
+    function loadStudents() {
+
+      const data =
+        localStorage.getItem(
+          "students"
+        );
+
+
+      if (!data) {
+
+        showNoStudents();
+
+        return;
+
+      }
+
+
+      students =
+        JSON.parse(data);
+
+
+      displayStudents(students);
+
+    }
+
+
+    /* DISPLAY STUDENTS */
+
+    function displayStudents(data) {
+
+
+      if (data.length === 0) {
+
+        showNoStudents();
+
+        return;
+
+      }
+
+
+      grid.innerHTML =
+
+        data.map(student => `
+
+          <div class="student-card">
+
+
+            <div class="profile">
+
+
+              <div class="avatar">
+
+                ${student.name
+                  .charAt(0)
+                  .toUpperCase()}
+
+              </div>
+
+
+              <div>
+
+                <h3 class="student-name">
+
+                  ${student.name}
+
+                </h3>
+
+
+                <div class="student-id">
+
+                  Student ID:
+                  STU${String(student.id)
+                    .padStart(3, "0")}
+
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+            <div class="details">
+
+
+              <div class="detail">
+
+                <span class="label">
+                  Department
+                </span>
+
+                <span class="value">
+                  ${student.department}
+                </span>
+
+              </div>
+
+
+              <div class="detail">
+
+                <span class="label">
+                  Year
+                </span>
+
+                <span class="value">
+                  ${student.year}
+                </span>
+
+              </div>
+
+
+              <div class="detail">
+
+                <span class="label">
+                  Marks
+                </span>
+
+                <span class="value">
+                  ${student.marks}%
+                </span>
+
+              </div>
+
+
+              <div class="detail">
+
+                <span class="label">
+                  Status
+                </span>
+
+                <span
+                  class="status
+                  ${
+                    student.status === "Active"
+                      ? "active"
+                      : "inactive"
+                  }"
+                >
+
+                  ${student.status}
+
+                </span>
+
+              </div>
+
+
+            </div>
+
+
+            <button
+              class="view-btn"
+              onclick="viewDetails(${student.id})"
+            >
+
+              📄 View Details
+
+            </button>
+
+
+          </div>
+
+        `).join("");
+
+    }
+
+
+    /* SEARCH */
+
+    function searchStudents() {
+
+      const value =
+        search.value
+          .toLowerCase()
+          .trim();
+
+
+      if (value === "") {
+
+        displayStudents(students);
+
+        return;
+
+      }
+
+
+      const filtered =
+        students.filter(student =>
+
+          student.name
+            .toLowerCase()
+            .includes(value)
+
+          ||
+
+          student.department
+            .toLowerCase()
+            .includes(value)
+
+        );
+
+
+      displayStudents(filtered);
+
+    }
+
+
+    /* SEARCH WHILE TYPING */
+
+    search.addEventListener(
+      "input",
+      searchStudents
+    );
+
+
+    /* VIEW DETAILS */
+
+    function viewDetails(id) {
+
+      const student =
+        students.find(
+          s => s.id === id
+        );
+
+
+      if (!student) return;
+
+
+      document.getElementById(
+        "modal-body"
+      ).innerHTML = `
+
+        <div class="modal-detail">
+
+          <span>Name</span>
+
+          <strong>
+            ${student.name}
+          </strong>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+          <span>Student ID</span>
+
+          <strong>
+            STU${String(student.id)
+              .padStart(3, "0")}
+          </strong>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+          <span>Email</span>
+
+          <strong>
+            ${student.email}
+          </strong>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+          <span>Phone</span>
+
+          <strong>
+            ${student.phone}
+          </strong>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+          <span>Department</span>
+
+          <strong>
+            ${student.department}
+          </strong>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+          <span>Year</span>
+
+          <strong>
+            ${student.year}
+          </strong>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+          <span>Marks</span>
+
+          <strong>
+            ${student.marks}%
+          </strong>
+
+        </div>
+
+
+        <div class="modal-detail">
+
+          <span>Status</span>
+
+          <strong>
+            ${student.status}
+          </strong>
+
+        </div>
+
+      `;
+
+
+      document.getElementById(
+        "modal"
+      ).style.display = "flex";
+
+    }
+
+
+    /* CLOSE MODAL */
+
+    function closeModal() {
+
+      document.getElementById(
+        "modal"
+      ).style.display = "none";
+
+    }
+
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    window.addEventListener(
+      "click",
+      function(e) {
+
+        const modal =
+          document.getElementById(
+            "modal"
+          );
+
+
+        if (e.target === modal) {
+
+          closeModal();
+
+        }
+
+      }
+    );
+
+
+    /* NO STUDENTS */
+
+    function showNoStudents() {
+
+      grid.innerHTML = `
+
+        <div class="no-students">
+
+          <h2>
+            No Students Found
+          </h2>
+
+          <p>
+            Please add students from
+            the Admin Panel.
+          </p>
+
+          <a
+            href="admin.html"
+            class="nav-btn admin-btn"
+          >
+            Go to Admin Panel
+          </a>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* START */
+
+    loadStudents();
+
+  </script>
+
+</body>
+
+</html>
